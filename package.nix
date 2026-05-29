@@ -31,6 +31,10 @@ stdenv.mkDerivation rec {
     opencc
   ];
 
+  postPatch = ''
+    patchShebangs utils/
+  '';
+
   # 根据项目的 CMake 参数进行定制
   cmakeFlags = [
     "-DENABLE_APPEND_COLOPHON=${if withColophon then "ON" else "OFF"}"
